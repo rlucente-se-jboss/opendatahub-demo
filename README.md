@@ -15,8 +15,8 @@ in the `demo.conf` file.  Make sure the username includes the
 random number, the vertical bar, and the service account name.
 
 Set the three `APB_` parameters to correctly pull the latest
-automation broker for your platfom.  The example in the `demo.conf`
-file is correct for Mac OSX.
+[automation broker](http://automationbroker.io/) for your platform.
+The example in the `demo.conf` file is correct for Mac OSX.
 
 For the `SECRET_NAME`, you can follow the convention of your email
 address but substitue a dash `-` for the `@` sign (e.g.
