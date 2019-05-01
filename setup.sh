@@ -1,7 +1,5 @@
 #!/usr/bin/env bash
 
-set -x
-
 . $(dirname $0)/demo.conf
 
 PUSHD ${WORKDIR}
