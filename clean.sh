@@ -16,7 +16,9 @@ do
 done
 
 #
-# remove any left over data on persistent volumes
+# remove any left over data on persistent volumes (this assumes
+# persistent volumes are located under /mnt/data on the host at
+# $IP_ADDR)
 #
 echo "Provide the root password for ${IP_ADDR} when prompted"
 ssh root@${IP_ADDR} 'cd /mnt/data && find . -type d | grep "^./vol[0-9]*/" | cut -d/ -f1-3 | sort -u | xargs rm -fr'
