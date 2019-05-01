@@ -33,7 +33,7 @@ Everything is scripted and straightforward.  Simply run the command,
 The automation broker will ask several questions to configure the
 opendatahub-demo.  Example answers are provided below in bold.
 
-```
+<pre><code>
 Enter name of plan to execute: <b>dev</b>
 Plan: dev
 Enter value for parameter [db_memory], default: [256Mi]: <b>1Gi</b>
@@ -44,7 +44,7 @@ Enter value for parameter [spark_operator] (Deploy spark operator?), default: [t
 Enter value for parameter [deploy_all_notebooks] (Add all Jupyter notebook images (resource heavy while building)), default: [false]: <b>true</b>
 Enter value for parameter [registry] (URL of registry to pull images from (optional; images will be built if not provided)), default: [<nil>]:
 Enter value for parameter [repository] (Name of the image repository in the registry (mandatory if registry is provided)), default: [<nil>]:
-```
+</code></pre>
 
 ## Clean it all up
 To remove all artifacts simply run the command,
