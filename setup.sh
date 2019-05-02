@@ -39,11 +39,14 @@ PUSHD ${WORKDIR}
 
     S3_BUCKET_NAME="MY-DATA"
 
+    echo
+    echo "************************************************************************"
     echo "Set the S3 access key to 'foo' and the S3 secret key to 'bar'"
     echo "Leave the remaining items blank"
     aws configure
 
     echo
+    echo "************************************************************************"
     echo "    # Instruct openshift to forward a localhost port to the ceph container"
     echo "    oc port-forward ceph-nano-0 8000 &"
     echo
