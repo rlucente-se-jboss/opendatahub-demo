@@ -3,24 +3,39 @@ This repository scripts out how to install the
 [OpenDataHub](https://opendatahub.io) demo on OpenShift.
 
 ## Configure the demo
+### One time registry authentication configuration
 With OCP 3.11, the [Red Hat container registry](https://registry.redhat.io)
 now restricts pulling images to authenticated users.  To get your
 credentials, go to the [Red Hat container registry](https://registry.redhat.io)
 and click on the `Service Accounts` link in the center right of the
-page.  Scroll until you find your account or click `New Service
-Account` to create one.  Click on your service account.  Make sure
-the `Token Information` tab is selected and copy your username and
-password to the parameters `OREG_USER` and `OREG_PASS`, respectively,
-in the `demo.conf` file.  Make sure the username includes the
-random number, the vertical bar, and the service account name.
+page.  You may need to login first using your [Red Hat Customer Portal](https://access.redhat.com)
+credentials.  Scroll until you find your account or click `New
+Service Account` to create one.  Click on your service account.
+Make sure the `Docker Login` tab is selected and run the example
+command on your local computer.  Inspect the file $HOME/.docker/config.json
+on your local computer and make sure it only contains the `auths`
+entry for `registry.redhat.io`.  Secure copy this to the OpenShift
+nodes in your OpenShift cluster using:
 
+    scp ~/.docker/config.json \
+        root@<node-ip-address>:/var/lib/origin/.docker/config.json
+
+Make sure that the secret `imagestreamsecret` in the `openshift`
+project on the cluster matches.  To do that, run the following
+commands as a user with `cluster-admin` privileges:
+
+    oc delete secret/imagestreamsecret -n openshift
+    oc create secret generic imagestreamsecret \
+        --from-file=.dockerconfigjson=$HOME/.docker/config.json \
+        --type=kubernetes.io/dockerconfigjson \
+        -n openshift
+
+Restart the OpenShift compute node.
+
+### Configure the demo parameters    
 Set the three `APB_` parameters to correctly pull the latest
 [automation broker](http://automationbroker.io/) for your platform.
 The example in the `demo.conf` file is correct for Mac OSX.
-
-For the `SECRET_NAME`, you can follow the convention of your email
-address but substitue a dash `-` for the `@` sign (e.g.
-rlucente-example.com).
 
 Finally, set the `IP_ADDR`, `DOMAIN`, `MASTER`, and `PORT` to
 correctly resolve to the OpenShift API on the master node.
