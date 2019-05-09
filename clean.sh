@@ -22,7 +22,7 @@ done
 #
 echo
 echo "************************************************************************"
-echo "Provide the root password for ${IP_ADDR} when prompted"
+echo "Provide the root password for ${IP_ADDR} if prompted"
 ssh root@${IP_ADDR} 'cd /mnt/data && find . -type d | grep "^./vol[0-9]*/" | cut -d/ -f1-3 | sort -u | xargs rm -fr'
 echo
 
